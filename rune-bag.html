@@ -173,9 +173,9 @@
             <h2>Text Content</h2>
             <div id="composed-content">
                 <h3>Reflection On The Draw</h3>
-                <p id="content-1">The left-most rune represents the past.</p>
-                <p id="content-3">The centre rune represents the present.</p>
-                <p id="content-5">The right-most rune represents the future.</p>
+                <p id="content-1">The left-most rune represents the <strong>past</strong>.</p>
+                <p id="content-3">The centre rune represents the <strong>present</strong>.</p>
+                <p id="content-5">The right-most rune represents the <strong>future</strong>.</p>
                 <p id="content-2">The top rune represents a situation that helps the future to come about.</p>
                 <p id="content-4">The bottom rune represents a situation that may prevent the future from happening.</p>
             </div>
@@ -183,20 +183,20 @@
             <div id="source-content">
                 <h3>Rune Interpretations</h3>
                 
-                <p id="source-mannaz">Mannaz represents man; one's individuality and role in his or her community.</p>
-                <p id="source-mannaz-inverted">When inverted, Mannaz can be...</p>
+                <p id="source-mannaz">Mannaz represents man; one's individuality and role in his or her community. Drawing Mannaz can be an invitation for some introspection— what is important to you and how are you important to others?</p>
+                <p id="source-mannaz-inverted">Having drawn Mannaz in reverse can represent a disconneciton from one's self or a failure of fulfilling one's responsibility to the community.</p>
                 
-                <p id="source-gebo">Gebo represents man.</p>
+                <p id="source-gebo">Gebo represents friendships. The presence of Gebo in the draw means one needs to reflect on what binds him or her to others. What favours do you owe? What favours do you think others owe you? What experiences do you share with others?</p>
                 
-                <p id="source-anzus">Anzus represents man.</p>
-                <p id="source-anzus-inverted">When inverted...</p>
+                <p id="source-anzus">Anzus represents wisdom. It is the accumulation of knowledge and experience, and how one draws from that knowledge and experience to solve problems or to simply to do the right thing. Anzus is also said to be the “voice of God”.</p>
+                <p id="source-anzus-inverted">Drawing Anzus in reverse can represent a cloud in one's judgement— exacerbating what should have been a simple problem.</p>
                 
-                <p id="source-othala">Othala represents man.</p>
-                <p id="source-othala-inverted">Mannaz represents man.</p>
+                <p id="source-othala">Othala represents family relations, the physical home, and inheritances. Drawing Othala brings those things at the foreground. Perhaps a reunion, a purchase of a new house or a renovation? It can also be a sign of the passing of an elder.</p>
+                <p id="source-othala-inverted">Othala, in reverse, can mean trouble in the family or a warning to protect one's home from calamity or trespass.</p>
                 
-                <p id="source-ingwas">Mannaz represents man.</p>
+                <p id="source-ingwas">Ingwas represents potential. Drawing Ingwas means an abundance of opportunities. While it may be seen as a good thing, the presence of Ingwas is also a warning for one to be extra mindful of one's actions. Potential is neutral. One needs to nurse the situation if it is to reach a happy and expected ending.</p>
                 
-                <p id="source-uruz">Mannaz represents man.</p>
+                <p id="source-uruz">Uruz represents physical strength and well-being.</p>
                 <p id="source-uruz-inverted">Mannaz represents man.</p>
                 
                 <p id="source-perth">Mannaz represents man.</p>
@@ -257,7 +257,7 @@
     var rune_bag = document.getElementById("rune-bag");
     var picked = 0;
     var init_interval = null;
-    var init_delay = 1000;
+    var init_delay = 200;
     
     function init() {
         // Basically, delay picking a rune for effect.
