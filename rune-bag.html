@@ -20,6 +20,8 @@
                 width: 840px;
             }
             header, footer, h3 { clear: both; text-align: center; }
+            header { margin-bottom: 10px; }
+            footer { padding: 10px; }
             h1 {
                 font-size: 1.5em;
                 font-weight: normal;
@@ -29,10 +31,10 @@
             h2 { display: none; }
             h3, p { font-size: 1.1em; margin: 0px; padding-bottom: 10px; }
             p { color: rgb(200,200,200); }
-            footer { padding: 10px; }
                 footer p { font-size: 0.9em; }
             strong { color: rgb(255,255,255); }
-            a:link, a:visited { color: rgb(255,255,255); }
+            a:link, a:visited { color: rgb(255,255,255); text-decoration: none; }
+            a:focus, a:hover { text-decoration: underline; }
             path { fill: rgb(255,255,255); stroke: none; }
             rect { fill: rgb(25,25,25); stroke: rgb(120,120,120); }
             #graphics { float: left; width: 320px; }
@@ -40,6 +42,7 @@
                 #rune-field-container {
                     background: rgb(0,0,0);
                     border-radius: 20px;
+                    height: 494px;
                     margin: auto;
                     margin-bottom: 10px;
                     padding: 25px;
@@ -60,9 +63,16 @@
                 #text-content h3 { color: rgb(255,255,255); padding: 20px; }
                 #composed-content { display: none; }
                 #source-content { display: none; }
+            #bottom-box {
+                border: 1px rgb(0,0,0) solid;
+                height: 90px;
+                margin: auto;
+                margin-bottom: 10px;
+                width: 728px;
+            }
         </style>
         <style media="print">
-            @page { margin: 2cm 0.5cm; padding: 0px; }
+            @page { margin: 2cm 0.5cm; }
             body { width: 100%; }
             header { font-size: 1.3em; }
             #graphics { width: 400px; }
@@ -73,12 +83,16 @@
                 margin: 0px;
                 width: 300px;
             }
+            #asker { display: none; }
         </style>
     </head>
     <body>
         <header>
             <h1>Samhain13's Rune Bag</h1>
-            <p>A random rune cross spread generator.</p>
+            <p>
+                A random rune cross spread generator.<br />
+                <a id="asker" href="#">[ <strong>Draw Runes</strong> ]</a>
+            </p>
         </header>
         
         <section id="graphics">
@@ -204,10 +218,11 @@
             <h2>Text Content</h2>
             <div id="composed-content">
                 <h3>Reflection on: <span id="composed-title">The Question</span></h3>
+                
                 <p id="content-1">The left-most rune represents a <strong>past</strong> event.</p>
                 <p id="content-3">The centre rune represents the <strong>present</strong> situation.</p>
                 <p id="content-5">The right-most rune suggests what may be the <strong>future</strong>.</p>
-                <p id="content-2">The top rune represents a condition that helps the suggested future to come about.</p>
+                <p id="content-2">The top rune represents a condition that may help the suggested future come to pass.</p>
                 <p id="content-4">The bottom rune represents a condition that may prevent the suggested future from happening.</p>
             </div>
             
@@ -280,27 +295,46 @@
             </div>
         </section>
         
+        <footer>
+            <div id="bottom-box">
+            </div>
+            <p>Copyright &copy; 2015 <a href="http://www.abcruz.com" target="_blank">Arielle B Cruz</a>. All rights reserved.<br />
+            The contents of this web page are available under the <a href="http://creativecommons.org/licenses/by-sa/3.0/ph/" target="_blank">Creative Commons Attribution Share-Alike 3.0 Philippines</a> License.</p>
+        </footer>
+
         <script>
 (function() {
     
-    var question = prompt("Think of a title of a situation:");
-    var rune_bag = document.getElementById("rune-bag");
-    var picked = 0;
-    var init_interval = null;
+    var has_data = false;
+    var max_runes = document.getElementsByTagName("rect").length;
     var init_delay = 100;
+    var picked = 0;
+    var question = "A Question.";
+    var refer_uri = "";
+    var rune_bag = document.getElementById("rune-bag");
+    var runes = [];  // [[rune.id, inverted: true|false], ...]
+    var self = location.protocol + "//" + location.host + location.pathname;
     
     function init() {
-        // Basically, delay picking a rune for effect.
+        // Called under normal circumstances, when there is no data suppied.
         if (picked < document.getElementsByTagName("rect").length) {
             picked += 1;
             pick_a_rune();
             setTimeout(init, init_delay);
         } else {
-            var t = document.getElementById("composed-title");
-            var c = document.getElementById("composed-content");
-            t.firstChild.nodeValue = question;
-            c.style["display"] = "block";
+            finish_init();
         }
+    }
+    
+    function compose_share_link() {
+        var p = self + "?runes=";
+        var r = [];
+        for (var i=0; i<runes.length; i++) {
+            r.push(String(runes[i][0]) + "." + ((runes[i][1]) ? "1" : "0"));
+        }
+        p += r.join(",") + "&question=" + encodeURIComponent(question);
+        console.log(p);
+        return p;
     }
     
     function compose_reflection(rune_id, inverted) {
@@ -319,35 +353,90 @@
         p.innerHTML = intro + " " + rune + " " + reflection;
     }
     
+    function finish_init() {
+        if (!has_data) {
+            var u = compose_share_link();
+            location.replace(u);
+        } else {
+            var t = document.getElementById("composed-title");
+            var c = document.getElementById("composed-content");
+            var s = document.getElementById("asker");
+            t.firstChild.nodeValue = question;
+            c.style["display"] = "block";
+            s.href = self;
+        }
+    }
+    
+    function parse_args() {
+        // Get the arguments part of the location.
+        var l = location.href.split(location.pathname);
+        if (l.length != 2) return false;
+        var a = l[1].substring(1).split("&");
+        for (var i=0; i<a.length; i++) {
+            var kv = a[i].split("=");
+            if (kv[0] == "question") question = decodeURIComponent(kv[1]);
+            if (kv[0] == "runes") {
+                var rs = kv[1].split(",");
+                if (rs.length != max_runes) return false;
+                for (var j=0; j<rs.length; j++) {
+                    /* We want a float-like expression where in x.y,
+                       x is a rune's id and y is either 0 or 1, which
+                       we'll then convert to a Boolean. */
+                    var r_ids = rs[j].split(".");
+                    if (isNaN(r_ids[0])) return false;
+                    if (r_ids.length != 2) r_ids[1] = "0";
+                    if (isNaN(r_ids[1])) return false;
+                    runes.push([Number(r_ids[0]), Boolean(Number(r_ids[1]))]);
+                }
+            }
+        }
+        // Because we can get to this point and still not have the right number.
+        if (!question) question = "...";
+        if (runes.length != max_runes) {
+            runes = [];
+            return false;
+        }
+        return true;
+    }
+    
     function pick_a_rune() {
-        var runes = rune_bag.children;
-        var rune = runes[Math.floor(Math.random() * runes.length)];
+        var choices = rune_bag.children;
         var rune_field = document.getElementById("rune-" + picked);
-        inverted = rune_invert(rune);
+        if (has_data) {
+            var choice = runes[picked-1][0];
+            var rune = choices[choice];
+            var inverted = runes[picked-1][1];
+        } else {
+            var choice = Math.floor(Math.random() * choices.length);
+            var rune = choices[choice];
+            var inverted = false;
+            if (rune.hasAttribute("reversible")) inverted = Math.random() >= 0.5;
+            runes.push([choice, inverted]);
+        }
+        if (inverted) rune_invert(rune);
         compose_reflection(rune.id, inverted);
         rune_field.appendChild(rune);
     }
     
     function rune_invert(rune) {
-        if (!rune.hasAttribute("reversible")) return false;
-        if (Math.random() >= 0.5) return false;
         var scale = "scale(-1,-1)";
         var translate = "translate(-" + rune_bag.attributes["width"].value +
             ",-" + rune_bag.attributes["height"].value + ")";
         rune.setAttribute("transform", [scale, translate].join(" "));
-        return true;
     }
     
     // Here we go.
+    has_data = parse_args();
+    if (!has_data) {
+        question = prompt("Think of a title of a situation:");
+        init_delay = 0;
+        var g = document.getElementById("rune-field");
+        g.style["display"] = "none";
+    }
     setTimeout(init, init_delay);
     
 
 }).call();
         </script>
-        
-        <footer><p>
-            Copyright &copy; 2015 <a href="http://www.abcruz.com" target="_blank">Arielle B Cruz</a>. All rights reserved.<br />
-            The contents of this web page are available under the Creative Commons Attribution Share-Alike 3.0 Philippines License.
-        </p></footer>
     </body>
 </html>
