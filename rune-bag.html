@@ -28,8 +28,10 @@
             h2 { display: none; }
             h3, p { font-size: 1.1em; margin: 0px; padding-bottom: 10px; }
             p { color: rgb(200,200,200); }
-            footer p { font-size: 0.9em; }
+            footer { padding: 10px; }
+                footer p { font-size: 0.9em; }
             strong { color: rgb(255,255,255); }
+            a:link, a:visited { color: rgb(255,255,255); }
             path { fill: rgb(255,255,255); stroke: none; }
             rect { fill: rgb(25,25,25); stroke: rgb(120,120,120); }
             #graphics { float: left; width: 320px; }
@@ -57,6 +59,19 @@
                 #text-content h3 { color: rgb(255,255,255); padding: 20px; }
                 #composed-content { display: none; }
                 #source-content { display: none; }
+        </style>
+        <style media="print">
+            @page { margin: 2cm 0.5cm; }
+            body { width: 100%; }
+            header { font-size: 1.3em; }
+            #graphics { width: 400px; }
+            #text-content {
+                border: 0px;
+                float: left;
+                height: auto;
+                margin: 0px;
+                width: 300px;
+            }
         </style>
     </head>
     <body>
@@ -187,12 +202,12 @@
         <section id="text-content">
             <h2>Text Content</h2>
             <div id="composed-content">
-                <h3>Reflection On The Draw</h3>
-                <p id="content-1">The left-most rune represents the <strong>past</strong>.</p>
-                <p id="content-3">The centre rune represents the <strong>present</strong>.</p>
-                <p id="content-5">The right-most rune represents the <strong>future</strong>.</p>
-                <p id="content-2">The top rune represents a situation that helps the future to come about.</p>
-                <p id="content-4">The bottom rune represents a situation that may prevent the future from happening.</p>
+                <h3>Reflection on: <span id="composed-title">The Question</span></h3>
+                <p id="content-1">The left-most rune represents a <strong>past</strong> event.</p>
+                <p id="content-3">The centre rune represents the <strong>present</strong> situation.</p>
+                <p id="content-5">The right-most rune suggests what may be the <strong>future</strong>.</p>
+                <p id="content-2">The top rune represents a condition that helps the suggested future to come about.</p>
+                <p id="content-4">The bottom rune represents a condition that may prevent the suggested future from happening.</p>
             </div>
             
             <div id="source-content">
@@ -266,7 +281,8 @@
         
         <script>
 (function() {
-
+    
+    var question = prompt("Think of a title of a situation:");
     var rune_bag = document.getElementById("rune-bag");
     var picked = 0;
     var init_interval = null;
@@ -279,13 +295,14 @@
             pick_a_rune();
             setTimeout(init, init_delay);
         } else {
+            var t = document.getElementById("composed-title");
             var c = document.getElementById("composed-content");
+            t.firstChild.nodeValue = question;
             c.style["display"] = "block";
         }
     }
     
     function compose_reflection(rune_id, inverted) {
-        console.log(rune_id);
         var p = document.getElementById("content-" + picked);
         var intro = p.innerHTML;
         var src_id = "source-" + rune_id;
@@ -327,6 +344,9 @@
 }).call();
         </script>
         
-        <footer><p>Copyright &copy; 2015 Arielle B Cruz. All rights reserved.</p></footer>
+        <footer><p>
+            Copyright &copy; 2015 <a href="http://www.abcruz.com" target="_blank">Arielle B Cruz</a>. All rights reserved.<br />
+            The contents of this web page are available under the Creative Commons Attribution Share-Alike 3.0 Philippines License.
+        </p></footer>
     </body>
 </html>
