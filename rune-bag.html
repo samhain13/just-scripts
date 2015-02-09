@@ -6,22 +6,23 @@
         <title>Samhain13's Rune Bag</title>
         <style>
             html {
-                background: linear-gradient(to bottom, rgb(20,20,20) 0%, rgb(100,100,100) 100%)
-                    fixed;
+                background: linear-gradient(to bottom, rgb(20,20,20) 0%,
+                    rgb(100,100,100) 100%) fixed;
                 height: 100%;
                 width: 100%;
             }
             body {
-                color: rgb(200,200,200);
+                color: rgb(255,255,255);
                 font-family: sans-serif;
                 font-size: 62.5%;
                 margin: auto;
-                width: 800px;
+                width: 840px;
             }
             header, footer, h3 { clear: both; text-align: center; }
             h1 { font-weight: normal; margin: 0px; padding-top: 10px; }
             h2 { display: none; }
-            h3, p { margin: 0px; padding-bottom: 10px; }
+            h3, p { font-size: 1.1em; margin: 0px; padding-bottom: 10px; }
+            p { color: rgb(200,200,200); }
             strong { color: rgb(255,255,255); }
             path { fill: rgb(255,255,255); stroke: none; }
             rect { fill: rgb(25,25,25); stroke: rgb(120,120,120); }
@@ -36,8 +37,14 @@
                     width: 315px;
                 }
             #text-content {
+                border-bottom: 1px rgb(0,0,0) solid;
+                border-top: 1px rgb(0,0,0) solid;
                 float: right;
-                width: 420px;
+                height: 500px;
+                margin-top: 17px;
+                overflow: auto;
+                padding: 0px 20px 10px 20px;
+                width: 440px;
             }
                 #text-content h3 { color: rgb(255,255,255); padding: 20px; }
                 #composed-content { display: none; }
@@ -196,58 +203,56 @@
                 
                 <p id="source-ingwas">Ingwas represents potential. Drawing Ingwas means an abundance of opportunities. While it may be seen as a good thing, the presence of Ingwas is also a warning for one to be extra mindful of one's actions. Potential is neutral. One needs to nurse the situation if it is to reach a happy and expected ending.</p>
                 
-                <p id="source-uruz">Uruz represents physical strength and well-being.</p>
-                <p id="source-uruz-inverted">Mannaz represents man.</p>
+                <p id="source-uruz">Uruz represents physical strength, health, and general well-being. Drawing this rune maybe a sign of impending rigourous activities, sports competitions, or manual labour.</p>
+                <p id="source-uruz-inverted">Reversed, Uruz warns one to take care of his or her health as there is a potential for sickness or a delay of recovery from one. There may also be a chance of a physical confrontation.</p>
                 
-                <p id="source-perth">Mannaz represents man.</p>
-                <p id="source-perth-inverted">Mannaz represents man.</p>
+                <p id="source-perth">Perth represents fate. Some sources say that Perth resembles a dice cup, which was used in gambling through the ages. The appearance of this rune in the draw an opporunity to test fate— to take a chance on something.</p>
+                <p id="source-perth-inverted">Conversely, having drawn Perth in reverse, one is warned from taking unnecessary risks.</p>
                 
-                <p id="source-isa">Mannaz represents man.</p>
+                <p id="source-isa">Isa represents ice. Isa is the harbinger of a long wait. It's appearance invites one to accept that there are things that are out of one's hands. Some times, in order to accomplish something, one has to allow others to do what they have to do.</p>
                 
-                <p id="source-nauthir">Mannaz represents man.</p>
-                <p id="source-nauthir-inverted">Mannaz represents man.</p>
+                <p id="source-nauthir">Nauthir represents pain or failure. There's a saying, “it's not how many times you fall but how many times you pick yourself up.” Perhaps, that is the lesson that Nauthir wants to leave. There is also a saying, “whatever doesn't kill you makes your stronger.”</p>
+                <p id="source-nauthir-inverted">Drawing Nauthir reversed is a warning of a tendency to give up easily and to take the lessons of the experience for granted.</p>
                 
-                <p id="source-aiwas">Mannaz represents man.</p>
-                <p id="source-aiwas-inverted">Mannaz represents man.</p>
+                <p id="source-aiwas">Aiwas represents adaptability. This rune is said to symbolise the Yew tree, known for its flexibility. Because of that, the wood of the Yew tree has been used for many things, most notably the long bow. Aiwas invites one to reflect on one's ability to adjust to circumstances and to make the best out of what maybe a bad situation.</p>
                 
-                <p id="source-algiz">Mannaz represents man.</p>
-                <p id="source-algiz-inverted">Mannaz represents man.</p>
+                <p id="source-algiz">Algiz represents security or the ability to defend oneself. Drawing Algiz may be a sign of a coming encroachment by others into one's property or territory. Property and territory in this sense are not limited to physical places. Figuratively, these can mean “one's turf”.</p>
+                <p id="source-algiz-inverted">When Algiz is draw reversed, one is warned to be more watchful since encroachers might use methods unheard of.</p>
                 
-                <p id="source-fehu">Mannaz represents man.</p>
-                <p id="source-fehu-inverted">Mannaz represents man.</p>
+                <p id="source-fehu">Fehu represents wealth. Drawing this rune is a sign that one ought to focus on finances and liquid assets. There may be an opportunity to make money or to exchange possessions in a very straight forward manner.</p>
+                <p id="source-fehu-inverted">Having drawn the Fehu reversed, one is warned of being short-changed or of overspending.</p>
                 
-                <p id="source-wunjo">Mannaz represents man.</p>
-                <p id="source-wunjo-inverted">Mannaz represents man.</p>
+                <p id="source-wunjo">Wunjo represents victory. Wunjo symbolises a scepter, which in turn symbolises dominion. Of course, in the old days, dominion is earned through victory on the battlefield. And victories are often accompanied by great joy and celebration.</p>
+                <p id="source-wunjo-inverted">But Wunjo in reverse simply means defeat, losing ground, and therefore, sadness.</p>
                 
-                <p id="source-raido">Mannaz represents man.</p>
-                <p id="source-raido-inverted">Mannaz represents man.</p>
+                <p id="source-raido">Raido represents communication and the exchange of information. In ancient times, Raido would have symbolised a rider taking a message from one point to another. In modern times, Raido can be the tools that we use to connect with each other: cellular phones, the Internet.</p>
+                <p id="source-raido-inverted">Raido reversed signifies troubles with getting information across and, possibly, a disruption in communications technology.</p>
                 
-                <p id="source-jer">Mannaz represents man.</p>
+                <p id="source-jer">Jer represents a year or a long, complete cycle. It is generally accepted that long cycles have their ups and downs. The appearance of Jer in the draw parhaps provides motivation for one to reflect on those ups and downs— to enjoy memories and to prepare oneself for another cycle.</p>
                 
-                <p id="source-kano">Mannaz represents man.</p>
-                <p id="source-kano-inverted">Mannaz represents man.</p>
+                <p id="source-kano">Kano represents enlightenment. Kano symbolises candle- or torchlight, a tool that cuts through darkness. As such, Kano's appearance in the draw is a sign that one may receive sensitive information or a solution to a nagging problem is on its way.</p>
+                <p id="source-kano-inverted">However, torchlight does not cover the widest area. Having drawn Kano in reverse serves as a strong reminder that one is not seeing a complete picture.</p>
                 
-                <p id="source-tiwas">Mannaz represents man.</p>
-                <p id="source-tiwas-inverted">Mannaz represents man.</p>
+                <p id="source-tiwas">Tiwas represents sacrifice. Small errands don't make a hero of anyone. Drawing Tiwas suggests a coming trial that promises some great reward at the end of it; therefore, one is invited to muster all his or her strength, endurance, and guile.</p>
+                <p id="source-tiwas-inverted">Tiwas reversed is a warning for one to stop and ask whether such a sacrifice is really warranted. Is the expected reward really worth fighting for?</p>
                 
-                <p id="source-berkana">Mannaz represents man.</p>
-                <p id="source-berkana-inverted">Mannaz represents man.</p>
+                <p id="source-berkana">Berkana represents motherhood. While Berkana can indicate a pregnancy and child rearing, the rune can also symbolise the beginning stages of an endeavour. Berkana represents situations where one must dedicate oneself to nurturing a personal cause so that it can develop into a self-sustainin one.</p>
+                <p id="source-berkana-inverted">Drawing Berkana in reverse suggests great delay in the development in one's endeavours. Patience and perseverance are required.</p>
                 
-                <p id="source-ewas">Mannaz represents man.</p>
-                <p id="source-ewas-inverted">Mannaz represents man.</p>
+                <p id="source-ewas">Ewas represents travel or adventures. Drawing Ewas suggests a coming opportunity to have a vacation, to see new and far away places. Ewas can also mean adventure in a non-geographical sense like getting introduced to a series of books, or learning a new skill and developing proficiency in it.</p>
+                <p id="source-ewas-inverted">In reverse, Ewas can indicate postponement of travel plans, mechanical problems while on the road, or any other cause of delay.</p>
                 
-                <p id="source-laguz">Laguz</p>
-                <p id="source-laguz-inverted"></p>
+                <p id="source-laguz">Laguz represents persistence. Traditionally, Laguz is the symbol of moving water like rivers and streams. Water may seem to follow the lay of the land but in reality, over time, flowing water actually changes land features. Although, it takes time.</p>
+                <p id="source-laguz-inverted">Drawing Laguz in reverse serves as a warning against impatience. It is a reminder that just because the effects of one's efforts aren't immediately seen, it doesn't mean that one's efforts are ineffective.</p>
                 
-                <p id="source-hagalaz">Mannaz represents man.</p>
-                <p id="source-hagalaz-inverted">Mannaz represents man.</p>
+                <p id="source-hagalaz">Hagalaz represents inclement weather. The rune, in the old days, symbolised hail— a destructive force that disrupted everyday life. Drawing this rune gives advance warning of unexpected challenges coming from the environment.</p>
                 
-                <p id="source-thuriaz">Mannaz represents man.</p>
-                <p id="source-thuriaz-inverted">Mannaz represents man.</p>
+                <p id="source-thuriaz">Thuriaz represnts barriers. Thuriaz symbolise the throns that protect some plants from predators. The appearance of this rune in the draw can mean that one's desire is being withheld— at arms distance. There maybe a situation where one is being taunted with something that one desperately wants but cannot have.</p>
+                <p id="source-thuriaz-inverted">Drawing this rune in reverse can mean that those desires are achieveable after all, with a bit of guile and cunning.</p>
                 
-                <p id="source-dagaz">Mannaz represents man.</p>
+                <p id="source-dagaz">Dagaz represents one day. A day is also such a short period of time; yet, a lot can happen in a day. Drawing Dagaz is a sign of surprises, a warning of very sudden changes.</p>
                 
-                <p id="source-sowelu">Mannaz represents man.</p>
+                <p id="source-sowelu">Sowelu represents the Sun, the self. Unlike Mannaz, which explores one's relationship with the community, Sowelu explores one's relationship with oneself. The appearance of the rune in the draw assures one that having pride (or self-love) is necessary but only until it becomes vanity (or self-worship).</p>
             </div>
         </section>
         
@@ -257,7 +262,7 @@
     var rune_bag = document.getElementById("rune-bag");
     var picked = 0;
     var init_interval = null;
-    var init_delay = 200;
+    var init_delay = 100;
     
     function init() {
         // Basically, delay picking a rune for effect.
@@ -276,7 +281,7 @@
         var p = document.getElementById("content-" + picked);
         var intro = p.innerHTML;
         var src_id = "source-" + rune_id;
-        var rune = "You picked <strong>" + rune_id.toUpperCase();
+        var rune = "We drawn <strong>" + rune_id.toUpperCase();
         if (inverted) rune += " inverted";
         rune += "</strong>.";
         var s = document.getElementById(src_id);
