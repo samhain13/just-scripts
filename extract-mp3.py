@@ -5,19 +5,21 @@
 """
 import os
 import subprocess
-from optparse import OptionParser
+from argparse import ArgumentParser
 
 def set_conditions(x, title_filter):
     is_mp4 = x.endswith(".mp4")
     has_string_in_title = title_filter in x if title_filter else True
     return has_string_in_title and is_mp4
 
-op = OptionParser()
-op.add_option("-f", "--filter", dest="title_filter", help="Title filter.")
-(options, args) = op.parse_args()
+description = "Extracts audio from MP4 files in the current directory."
+
+ap = ArgumentParser(description=description)
+ap.add_argument("-f", "--title-filter", help="title filter")
+args = ap.parse_args()
 
 songs = [x for x in os.listdir(os.getcwd()) \
-    if set_conditions(x, options.title_filter)]
+    if set_conditions(x, args.title_filter)]
 
 for song in songs:
     target_filename = "%s.mp3" % "".join(song.split(".")[:-1])
