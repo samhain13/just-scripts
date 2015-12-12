@@ -31,6 +31,7 @@ ap.add_argument("-d", "--destination", help="target directory", required=True)
 ap.add_argument("-s", "--separator", help="filename splitter", required=True)
 ap.add_argument("-i", "--index", help="target directory",
     required=True, type=int)
+ap.add_argument("--testing", help="test only", action="store_true")
 args = ap.parse_args()
 
 
@@ -49,7 +50,8 @@ if __name__ == "__main__":
         new_name = "%s.%s" % (split_name[args.index].upper(),
             args.extension.lower())
         new_path = os.path.join(args.destination, new_name)
-        sys.stdout.write("Copying to %s\n" % new_path)
-        shutil.copyfile(f, new_path)
+        sys.stdout.write("Copying %s to %s\n" % (f, new_path))
+        if not args.testing:
+            shutil.copyfile(f, new_path)
     sys.exit("Files have been copied to target directory. Goodbye.")
 
