@@ -35,11 +35,11 @@ def make_sentence():
     return " ".join(sentence) + "."
 
 def make_paragraph():
-    sentences = [make_sentence() for x in xrange(randint(1, 5))]
+    sentences = [make_sentence() for x in range(randint(1, 5))]
     return " ".join(sentences)
 
 def make_article():
-    paragraphs = [make_paragraph() for x in xrange(randint(3, 10))]
+    paragraphs = [make_paragraph() for x in range(randint(3, 10))]
     return "\n\n".join(paragraphs)
 
 stdout.write("\n" + make_article() + "\n\n")
